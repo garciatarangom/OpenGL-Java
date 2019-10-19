@@ -100,8 +100,6 @@ public class App {
     } // end drawLine
     
     public static void drawCircle(Simple2DBuffer screen, int x, int y, int r) {
-
-
     
     }
 } // end App
