@@ -45,6 +45,8 @@ public class App {
             }*/ // end for
 
             drawLine(screen, 10, 100, 11, 200);
+            drawCircle(screen, 50, 50, 30);
+            
            
 
             while (!w.windowShouldClose()) {
@@ -99,7 +101,34 @@ public class App {
         } //end for
     } // end drawLine
     
-    public static void drawCircle(Simple2DBuffer screen, int x, int y, int r) {
-    
+    public static void drawCircle(Simple2DBuffer screen, int xc, int yc, int r) {
+        int x = 0;
+        int y = r;
+        int d = 3 - 2 * r;
+        drawingC(screen,xc, yc, x, y);
+        while (y >= x){
+            x++; 
+            if (d > 0) 
+        { 
+            y--;  
+            d = d + 4 * (x - y) + 10; 
+        } 
+        else
+            d = d + 4 * x + 6; 
+        drawingC(screen,xc, yc, x, y);
+        }
+
     }
+
+    private static void drawingC(Simple2DBuffer screen, int xc, int yc, int x, int y) {
+        screen.set(xc+x, yc+y, 200, 100, 200); 
+        screen.set(xc-x, yc+y, 200, 100, 200); 
+        screen.set(xc+x, yc-y, 200, 100, 200); 
+        screen.set(xc-x, yc-y, 200, 100, 200); 
+        screen.set(xc+y, yc+x, 200, 100, 200); 
+        screen.set(xc-y, yc+x, 200, 100, 200); 
+        screen.set(xc+y, yc-x, 200, 100, 200); 
+        screen.set(xc-y, yc-x, 200, 100, 200);
+    }
+    
 } // end App
