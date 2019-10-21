@@ -40,14 +40,11 @@ public class App {
         try {
             var program = new Program("screen.vert", "screen.frag");
             var screen = new Simple2DBuffer(width, height);
-            /*for (int i = 0; i < width; i++) {
-                pixel(screen, i, i);
-            }*/ // end for
+           
 
             drawLine(screen, 10, 100, 11, 200);
-            drawCircle(screen, 50, 50, 30);
+            drawCircle(screen, 100, 100, 10);
             
-           
 
             while (!w.windowShouldClose()) {
                 glClearColor(0f, 0f, 0f, 1.0f);//Borro lo negro
@@ -58,12 +55,13 @@ public class App {
                 w.pollEvents();
             } //end while
             w.destroy();
-        }// end try  
+        } // end try  
         catch (IOException | CreateException | CompileException e) {
             e.printStackTrace();
-        }// end catch
+        } // end catch
 
     } // end main
+
     /* La función drawLine:
     1.- Recibe como parámetros screen (dibuja el pixel), y 3 enteros (x1,y1,x2,y2) que son
     las coordenadas de los puntos de la recta.
@@ -77,8 +75,7 @@ public class App {
     Con screen.set dibuja cada pixel en el lugar correcto, Math.round es una función que ayuda a redondear 
     los valores de x y y (flotantes), si no se hiciera lo anterior la línea no se dibujaría graficamente 
     correcta. Y see le asigna el color a la línea.
-    7.- Finalmente, también se redondean los valores de incremento de x y y.
-        */ 
+    7.- Finalmente, los valores de x y y se incrementan */
     public static void drawLine(Simple2DBuffer screen, int x1, int y1, int x2, int y2) {
 
         int dx = x2 - x1;
@@ -95,40 +92,51 @@ public class App {
         for (int i = 0; i <= steps ; i++) { 
             screen.set(Math.round(x), Math.round(y), 200, 100, 200); 
            
-            Math.round(x+= Xinc);
-            Math.round(y+= Yinc);
-        
+            // Math.round(x+= Xinc);
+            // Math.round(y+= Yinc);
+            x+= Xinc;
+            y+= Yinc;
         } //end for
     } // end drawLine
     
+    /*La función drawCircle:
+    1.- Recibe como parámetros screen y 3 enteros (xc,yc,r)
+    2.- Se establecen los valores iniciales de x, y, d
+    3.- Establezca el parámetro de decisión d en d = 3 - (2 * r)
+    4.- Se llama la función drawingC que recibe como parámetros
+    xc, yc, x, y)
+    5.- Repita los pasos del 5 al 8 hasta que x <= y
+Incremento del valor de x.
+Si d <0, establezca d = d + (4 * x) + 6
+De lo contrario, establezca d = d + 4 * (x - y) + 10 y disminuya y en 1.
+llame a la función drawCircle (int xc, int yc, int x, int y) */
     public static void drawCircle(Simple2DBuffer screen, int xc, int yc, int r) {
         int x = 0;
         int y = r;
         int d = 3 - 2 * r;
+
         drawingC(screen,xc, yc, x, y);
         while (y >= x){
             x++; 
-            if (d > 0) 
-        { 
+            if (d > 0) { 
             y--;  
             d = d + 4 * (x - y) + 10; 
-        } 
-        else
+            } //end if
+            else
             d = d + 4 * x + 6; 
-        drawingC(screen,xc, yc, x, y);
-        }
-
-    }
+            drawingC(screen,xc, yc, x, y);
+        } //end while
+    } //end drawCircle
 
     private static void drawingC(Simple2DBuffer screen, int xc, int yc, int x, int y) {
         screen.set(xc+x, yc+y, 200, 100, 200); 
-        screen.set(xc-x, yc+y, 200, 100, 200); 
+        screen.set(xc-x, yc+y, 250, 100, 200); 
         screen.set(xc+x, yc-y, 200, 100, 200); 
-        screen.set(xc-x, yc-y, 200, 100, 200); 
-        screen.set(xc+y, yc+x, 200, 100, 200); 
+        screen.set(xc-x, yc-y, 250, 100, 200); 
+        screen.set(xc+y, yc+x, 250, 100, 200); 
         screen.set(xc-y, yc+x, 200, 100, 200); 
-        screen.set(xc+y, yc-x, 200, 100, 200); 
+        screen.set(xc+y, yc-x, 250, 100, 200); 
         screen.set(xc-y, yc-x, 200, 100, 200);
-    }
+    } //end drawingC
     
 } // end App
