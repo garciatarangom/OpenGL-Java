@@ -43,7 +43,7 @@ public class App {
            
 
             drawLine(screen, 10, 100, 11, 200);
-            drawCircle(screen, 100, 100, 10);
+            drawCircle(screen, 100, 100, 50);
             
 
             while (!w.windowShouldClose()) {
@@ -99,23 +99,26 @@ public class App {
         } //end for
     } // end drawLine
     
-    /*La función drawCircle:
-    1.- Recibe como parámetros screen y 3 enteros (xc,yc,r)
-    2.- Se establecen los valores iniciales de x, y, d
-    3.- Establezca el parámetro de decisión d en d = 3 - (2 * r)
-    4.- Se llama la función drawingC que recibe como parámetros
-    xc, yc, x, y)
-    5.- Repita los pasos del 5 al 8 hasta que x <= y
-Incremento del valor de x.
-Si d <0, establezca d = d + (4 * x) + 6
-De lo contrario, establezca d = d + 4 * (x - y) + 10 y disminuya y en 1.
-llame a la función drawCircle (int xc, int yc, int x, int y) */
+    /* La función drawCircle:
+    El algoritmo que se utliza se llama "Algoritmo de Bresenham", el cual divide 
+    a la circunferencia en 8 partes con 45 grados cada una y da un total de
+    360 grados que es equivalente a lo que mide la totalidad del círculo.
+    1.- Recibe como parámetros screen (función que imprime el pixel) y 3 enteros (xc,yc,r)
+    2.- Se establecen los valores iniciales de x, y, d, los cuales ya están establecidos de 
+    esta manera, donde d es llamado "perímetro de decisión".
+    3.- Se hace un ciclo while hasta que y sea menor o igual a x y se incrementa x, dentro 
+    del ciclo si d es menor a 0 y se decrementa y el valor de d es igual a d + 4 *(x-y)+ 10, 
+    esta fórmula se obtiene de ----- y si no d es igual a d + 4 *(x-y)+ 6 y se llama la a funcion 
+    drawingC.
+    4.- La función drawingC recibe como parámetros screen, xc, yc, x, y. Dentro de ls función 
+    va dibujando cada pixel en el lugar correcto (en las 8 partes), es por ello que 
+    */
     public static void drawCircle(Simple2DBuffer screen, int xc, int yc, int r) {
         int x = 0;
         int y = r;
         int d = 3 - 2 * r;
 
-        drawingC(screen,xc, yc, x, y);
+        
         while (y >= x){
             x++; 
             if (d > 0) { 
