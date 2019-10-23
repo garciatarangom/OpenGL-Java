@@ -53,7 +53,7 @@ public class App {
                 screen.draw();
                 w.swapBuffers();
                 w.pollEvents();
-            } //end while
+            } // end while
             w.destroy();
         } // end try  
         catch (IOException | CreateException | CompileException e) {
@@ -95,12 +95,9 @@ public class App {
        
         for (int i = 0; i <= steps ; i++) { 
             screen.set(Math.round(x), Math.round(y), 200, 100, 200); 
-           
-            // Math.round(x+= Xinc);
-            // Math.round(y+= Yinc);
             x+= Xinc;
             y+= Yinc;
-        } //end for
+        } // end for
     } // end drawLine
     
     /* La función drawCircle:
@@ -108,15 +105,15 @@ public class App {
     a la circunferencia en 8 partes con 45 grados cada una y da un total de
     360 grados que es equivalente a lo que mide la totalidad del círculo.
     1.- Recibe como parámetros screen (función que imprime el pixel) y 3 enteros (xc,yc,r)
-    2.- Se establecen los valores iniciales de x, y, d, donde d es llamado "perímetro de decisión".
+    2.- Se establecen los valores iniciales de x, y, d, donde d es llamado "perímetro de decisión". 
     3.- Se hace un ciclo while hasta que y sea menor o igual a x y se incrementa x, dentro 
     del ciclo si d es menor a 0 y se decrementa y el valor de d es igual a d + 4 *(x-y)+ 10, 
-    esta fórmula se obtiene de evaluarla con 0 y si no d es igual a d + 4 *(x-y)+ 6 y se llama la a funcion 
+    esta fórmula  y si no d es igual a d + 4 *(x-y)+ 6 y se llama la a funcion 
     drawingC.
     4.- La función drawingC recibe como parámetros screen, xc, yc, x, y. Dentro de la función 
     va dibujando cada pixel en el lugar correcto (en las 8 partes), es por ello que se va 
     restando y sumando xc,x,yc,y respectivamente, agregando también el color.
-    */
+    Explicación coloquial: el algoritmo para dibujar un círculo */
     public static void drawCircle(Simple2DBuffer screen, int xc, int yc, int r) {
         int x = 0;
         int y = r;
@@ -128,12 +125,12 @@ public class App {
             if (d > 0) { 
             y--;  
             d = d + 4 * (x - y) + 10; 
-            } //end if
+            } // end if
             else
             d = d + 4 * x + 6; 
             drawingC(screen,xc, yc, x, y);
-        } //end while
-    } //end drawCircle
+        } // end while
+    } // end drawCircle
 
     private static void drawingC(Simple2DBuffer screen, int xc, int yc, int x, int y) {
         screen.set(xc+x, yc+y, 200, 100, 200); 
@@ -144,6 +141,6 @@ public class App {
         screen.set(xc-y, yc+x, 200, 100, 200); 
         screen.set(xc+y, yc-x, 250, 100, 200); 
         screen.set(xc-y, yc-x, 200, 100, 200);
-    } //end drawingC
+    } // end drawingC
     
 } // end App
