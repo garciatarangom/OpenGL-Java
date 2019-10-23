@@ -75,7 +75,11 @@ public class App {
     Con screen.set dibuja cada pixel en el lugar correcto, Math.round es una función que ayuda a redondear 
     los valores de x y y (flotantes), si no se hiciera lo anterior la línea no se dibujaría graficamente 
     correcta. Y see le asigna el color a la línea.
-    7.- Finalmente, los valores de x y y se incrementan */
+    7.- Finalmente, los valores de x y y se incrementan.
+    Explicación "coloquial": En matemáticas es fácil dibujar una línea recta si se conocen las coordenadas
+    del punto inicial y del punto final; en graficación no se puede hacer de esa manera, se tiene 
+    que calcular puntos intermedios y dibujar cada pixel en ese punto con el color deseado, y así 
+    lo hace la funcion drawLine. */
     public static void drawLine(Simple2DBuffer screen, int x1, int y1, int x2, int y2) {
 
         int dx = x2 - x1;
@@ -104,14 +108,14 @@ public class App {
     a la circunferencia en 8 partes con 45 grados cada una y da un total de
     360 grados que es equivalente a lo que mide la totalidad del círculo.
     1.- Recibe como parámetros screen (función que imprime el pixel) y 3 enteros (xc,yc,r)
-    2.- Se establecen los valores iniciales de x, y, d, los cuales ya están establecidos de 
-    esta manera, donde d es llamado "perímetro de decisión".
+    2.- Se establecen los valores iniciales de x, y, d, donde d es llamado "perímetro de decisión".
     3.- Se hace un ciclo while hasta que y sea menor o igual a x y se incrementa x, dentro 
     del ciclo si d es menor a 0 y se decrementa y el valor de d es igual a d + 4 *(x-y)+ 10, 
-    esta fórmula se obtiene de ----- y si no d es igual a d + 4 *(x-y)+ 6 y se llama la a funcion 
+    esta fórmula se obtiene de evaluarla con 0 y si no d es igual a d + 4 *(x-y)+ 6 y se llama la a funcion 
     drawingC.
-    4.- La función drawingC recibe como parámetros screen, xc, yc, x, y. Dentro de ls función 
-    va dibujando cada pixel en el lugar correcto (en las 8 partes), es por ello que 
+    4.- La función drawingC recibe como parámetros screen, xc, yc, x, y. Dentro de la función 
+    va dibujando cada pixel en el lugar correcto (en las 8 partes), es por ello que se va 
+    restando y sumando xc,x,yc,y respectivamente, agregando también el color.
     */
     public static void drawCircle(Simple2DBuffer screen, int xc, int yc, int r) {
         int x = 0;
