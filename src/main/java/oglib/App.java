@@ -113,7 +113,11 @@ public class App {
     4.- La función drawingC recibe como parámetros screen, xc, yc, x, y. Dentro de la función 
     va dibujando cada pixel en el lugar correcto (en las 8 partes), es por ello que se va 
     restando y sumando xc,x,yc,y respectivamente, agregando también el color.
-    Explicación coloquial: el algoritmo para dibujar un círculo */
+    Explicación coloquial: el algoritmo para dibujar un círculo, lo divide en 8 partes iguales, 
+    y va dibujando cada arco de 45 grados cada una. Comienza dibujando el primer pixel en la 
+    posicion 0,0 (x,y) y la posicion del siguiente pixel lo calcula con : si es arriba el pixel (x+1, y) 
+    y si es abajo (x+1, y-1), y así lo hace sucesivamente hasta que acompleta el círculo.
+    */
     public static void drawCircle(Simple2DBuffer screen, int xc, int yc, int r) {
         int x = 0;
         int y = r;
